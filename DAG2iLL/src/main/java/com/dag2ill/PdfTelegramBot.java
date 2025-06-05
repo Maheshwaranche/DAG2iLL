@@ -181,7 +181,7 @@ public class PdfTelegramBot extends TelegramLongPollingBot {
     private void sendOptions(String chatId) throws TelegramApiException {
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Please select a PDF:");
+        message.setText("Please select a Challenge:");
 
         List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
         for (String key : pdfMap.keySet()) {

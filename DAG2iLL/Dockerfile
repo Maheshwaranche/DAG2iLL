@@ -1,7 +1,7 @@
 FROM maven:3.8.5-openjdk-17 AS build
 
 WORKDIR /app
-COPY Dag2Ill/Dag2iLL /app
+COPY DAG2iLL/DAG2iLL /app
 
 
 # Build JAR

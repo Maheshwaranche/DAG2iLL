@@ -3,7 +3,7 @@ COPY . .
 
 
 # Build JAR
-RUN mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
 
 FROM maven:3.8.3-openjdk-17-slim

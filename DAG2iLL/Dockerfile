@@ -1,20 +1,16 @@
-FROM eclipse-temurin:17-jdk AS build
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
 
-WORKDIR /app
-
-# Copy pom.xml and source code
-COPY pom.xml .
-COPY src ./src
 
 # Build JAR
-RUN ./mvnw clean package -DskipTests
+RUN mvnw clean package -DskipTests
 
-# Use a smaller base image for running the jar
-FROM eclipse-temurin:17-jdk
 
-WORKDIR /app
-COPY --from=build /app/target/DAG2iLL-0.0.1-SNAPSHOT.jar app.jar
+FROM maven:3.8.3-openjdk-17-slim
+
+COPY --from=build /target/DAG2iLL-0.0.1-SNAPSHOT.jar DAG2iLL.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "java -jar app.jar --server.port=$PORT"]
+ENTRYPOINT [ "java","-jar","DAG2iLL.jar"]
+
